@@ -1,0 +1,33 @@
+{
+  "name": "2-development-environment-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write src/**/*.ts",
+    "anthropic": "npm run file src/0-anthropic.ts",
+    "google": "npm run file src/0-google.ts",
+    "openai": "npm run file src/0-openai.ts",
+    "exercise-1": "npm run file src/1-dalle.ts",
+    "exercise-2": "npm run file src/2-token-limits.ts",
+    "exercise-3": "npm run file src/3-sentiment-analysis.ts",
+    "exercise-4": "npm run file src/4-text-summarization.ts",
+    "exercise-5": "npm run file src/5-generating-code.ts",
+    "exercise-6": "npm run file src/6-chatgpt-hallucinations.ts",
+    "file": "tsx --env-file=.env --no-deprecation"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.33.1",
+    "@google/generative-ai": "^0.21.0",
+    "openai": "^4.77.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2"
+  }
+}
