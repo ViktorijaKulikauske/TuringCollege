@@ -1,0 +1,25 @@
+{
+  "name": "2-development-environment-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write src/**/*.ts",
+    "exercises": "npm run file src/exercises.ts",
+    "file": "tsx --env-file=.env --no-deprecation"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.33.1",
+    "@google/generative-ai": "^0.21.0",
+    "openai": "^4.77.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2"
+  }
+}

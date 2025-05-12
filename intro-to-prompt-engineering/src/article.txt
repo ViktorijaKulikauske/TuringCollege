@@ -1,0 +1,26 @@
+Supply chains of LIB materials are characterized by highly global trade, with
+energy-intensive activities related to ore extraction, processing, and refining
+taking place across a wide range of locations globally (14). Key materials used
+in a LIB include nickel, cobalt, manganese, graphite, and lithium. According to
+Brown et al. (15), nickel is mined in more than 25 countries worldwide, however,
+Indonesia and Russia are the largest nickel producers with 38 and 11%,
+respectively; 63% of cobalt is extracted from the Democratic Republic of Congo;
+manganese is mainly mined in South Africa (30%) and Australia (12%); 62% of
+graphite is produced in China; and lithium is mainly mined in Australia (52%)
+and South America (Chile 22%, Argentina 7%). However, LIB refining and
+manufacturing are dominated by China. More than half of cobalt, graphite, and
+lithium refining capacity is situated in China and the country produces over 75%
+of all LIBs (16). Europe is responsible for ∼10% of global LIB manufacturing but
+is expected to increase its capacity to reach 25% by 2030. The United States has
+6% of LIB production capacity, while Japan and South Korea together have 5%.
+China's dominance is likely to remain through 2030 (12). However, the
+geographical distribution of key battery materials is sufficiently diverse to
+require detailed consideration of the multiple locations where each material is
+mined and processed throughout the supply chain to derive the global-average
+climate change impact of LIBs. Global-average impacts are important because they
+reveal the current state of LIBs manufacturing, while keeping consistency with
+previous studies. However, detailed emission factors for specific supply chains
+become more important because they allow the quantification of current and
+future energy and GHG emissions of battery manufacturing. Therefore, we must
+consider specific locations where key activities are occurring today, how they
+will shift in the future and the evolution of battery technologies over time.
