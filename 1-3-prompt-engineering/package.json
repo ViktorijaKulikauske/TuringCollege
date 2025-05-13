@@ -1,0 +1,36 @@
+{
+  "name": "3-prompt-engineering",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write src/**/*.ts",
+    "start": "npm run file src",
+    "exercise-1": "npm run file src/1-tiktoken.ts",
+    "exercise-2": "npm run file src/2-getCompletion.ts",
+    "exercise-3": "npm run file src/3-fabrications.ts",
+    "exercise-4": "npm run file src/4-instructions.ts",
+    "exercise-5": "npm run file src/5-complex-prompt.ts",
+    "exercise-6": "npm run file src/6-generate-code.ts",
+    "exercise-7": "npm run file src/7-quiz.ts",
+    "exercise-8": "npm run file src/8-prompt-optimization.ts",
+    "file": "tsx --env-file=.env --no-deprecation"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "nodemailer": "^7.0.3",
+    "openai": "^4.77.3",
+    "tiktoken": "^1.0.18",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.10.5",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2"
+  }
+}
