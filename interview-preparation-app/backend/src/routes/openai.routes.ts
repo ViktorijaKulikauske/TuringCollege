@@ -18,6 +18,14 @@ router.get(
   "/positions",
   openAIController.getPositionsByCategory.bind(openAIController)
 );
+router.get(
+  "/interview-prep",
+  openAIController.getInterviewPrepByPosition.bind(openAIController)
+);
+router.get(
+  "/suggested-answers",
+  openAIController.getSuggestedAnswersByPosition.bind(openAIController)
+);
 
 export default function setOpenAIRoutes(app: Application) {
   app.use("/api/openai", router);

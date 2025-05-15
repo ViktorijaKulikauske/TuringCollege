@@ -40,12 +40,56 @@ class OpenAIController {
       return;
     }
     try {
-      const positions = await this.openAIService.getPositionsByCategory(category);
+      const positions = await this.openAIService.getPositionsByCategory(
+        category
+      );
       res.status(200).json(positions);
     } catch (error) {
       res
         .status(500)
         .json({ error: "Failed to fetch positions for category." });
+    }
+  }
+
+  public async getInterviewPrepByPosition(
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    const position = req.query.position as string;
+    if (!position) {
+      res.status(400).json({ error: "Position parameter is required." });
+      return;
+    }
+    try {
+      const prep = await this.openAIService.getInterviewPrepByPosition(
+        position
+      );
+      res.status(200).json(prep);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "Failed to fetch interview preparation for position." });
+    }
+  }
+
+  public async getSuggestedAnswersByPosition(
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    const question = req.query.position as string; // 'position' param now holds the question text
+    if (!question) {
+      res.status(400).json({ error: "Question parameter is required." });
+      return;
+    }
+    try {
+      const answers = await this.openAIService.getSuggestedAnswersByQuestion(
+        question
+      );
+      res.status(200).json(answers);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "Failed to fetch suggested answers for question." });
     }
   }
 }

@@ -76,4 +76,44 @@ export class OpenAIService {
       }
     }
   }
+
+  async getInterviewPrepByPosition(position: string): Promise<string[]> {
+    const prompt = `List the top 10 questions, exercises, or personality tests that could be asked or given during a job interview for the position "${position}". Return them as a JSON array in a property called "interview_preparation".`;
+    const systemMessage =
+      "You are an expert interview coach. Return the top 10 questions, exercises, or personality tests for a given job position as a JSON object with an 'interview_preparation' array property.";
+    try {
+      const response = await this.callOpenAI(prompt, systemMessage);
+      return response.interview_preparation;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(
+          `Failed to fetch interview preparation for position: ${error.message}`
+        );
+      } else {
+        throw new Error(
+          "Failed to fetch interview preparation for position with an unknown error."
+        );
+      }
+    }
+  }
+
+  async getSuggestedAnswersByQuestion(question: string): Promise<string[]> {
+    const prompt = `List the top 5 answers or answer strategies that would help a candidate prepare for the following interview question: "${question}". Return them as a JSON array in a property called "suggested_answers".`;
+    const systemMessage =
+      "You are an expert interview coach. Return the top 5 answers or answer strategies for a given interview question as a JSON object with a 'suggested_answers' array property.";
+    try {
+      const response = await this.callOpenAI(prompt, systemMessage);
+      return response.suggested_answers;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(
+          `Failed to fetch suggested answers for question: ${error.message}`
+        );
+      } else {
+        throw new Error(
+          "Failed to fetch suggested answers for question with an unknown error."
+        );
+      }
+    }
+  }
 }

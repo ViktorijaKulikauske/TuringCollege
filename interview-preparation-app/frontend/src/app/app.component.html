@@ -18,11 +18,47 @@
     </h3>
     <ul class="grid grid-cols-1 gap-2">
       @for(position of positions; track position) {
-      <li class="bg-gray-100 rounded px-4 py-2 text-center">
-        {{ position }}
+      <li>
+        <button
+          (click)="onPositionClick(position)"
+          class="w-full bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded shadow transition focus:outline-none focus:ring-2 focus:ring-green-400"
+          type="button"
+        >
+          {{ position }}
+        </button>
       </li>
       }
     </ul>
-    }
+    } @if(selectedPosition) {
+    <h4 class="text-lg font-semibold mt-8 mb-4 text-center">
+      Interview Preparation for "{{ selectedPosition }}"
+    </h4>
+    <ul class="grid grid-cols-1 gap-2">
+      @for(item of interviewPrep; track item) {
+      <li>
+        <button
+          (click)="onQuestionClick(item)"
+          class="w-full bg-yellow-100 hover:bg-yellow-200 text-gray-800 font-medium px-4 py-2 rounded shadow transition focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          type="button"
+        >
+          {{ item }}
+        </button>
+      </li>
+      }
+    </ul>
+    @if(selectedQuestion && suggestedAnswers.length > 0) {
+    <h4 class="text-lg font-semibold mt-8 mb-4 text-center">
+      Suggested Answers / Strategies for:<br />
+      <span class="italic">{{ selectedQuestion }}</span>
+    </h4>
+    <ul class="grid grid-cols-1 gap-2">
+      @for(answer of suggestedAnswers; track answer) {
+      <li class="bg-blue-100 rounded px-4 py-2 text-gray-800">
+        <div class="font-semibold">Answer:</div>
+        <div>{{ answer }}</div>
+      </li>
+      }
+    </ul>
+    } }
   </div>
 </main>

@@ -18,4 +18,18 @@ export class OpenAIService {
       `${this.apiUrl}/positions?category=${encodeURIComponent(category)}`
     );
   }
+
+  getInterviewPrepByPosition(position: string) {
+    return this.http.get<string[]>(
+      `${this.apiUrl}/interview-prep?position=${encodeURIComponent(position)}`
+    );
+  }
+
+  getSuggestedAnswersByPosition(question: string) {
+    return this.http.get<string[]>(
+      `${this.apiUrl}/suggested-answers?position=${encodeURIComponent(
+        question
+      )}`
+    );
+  }
 }
