@@ -1,12 +1,28 @@
-<main class="main">
-  <div class="content">
-    <div>
-      <h2>Main Profession Categories</h2>
-      <ul>
-        @for(category of categories; track category) {
-        <li>{{ category }}</li>
-        }
-      </ul>
+<main class="min-h-screen bg-gray-50 flex items-center justify-center">
+  <div class="content w-full max-w-xl bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-center">
+      Main Profession Categories
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      @for(category of categories; track category) {
+      <div>
+        <button (click)="onCategoryClick(category)" type="button">
+          {{ category }}
+        </button>
+      </div>
+      }
     </div>
+    @if(selectedCategory) {
+    <h3 class="text-xl font-semibold mb-4 text-center">
+      Top Positions in "{{ selectedCategory }}"
+    </h3>
+    <ul class="grid grid-cols-1 gap-2">
+      @for(position of positions; track position) {
+      <li class="bg-gray-100 rounded px-4 py-2 text-center">
+        {{ position }}
+      </li>
+      }
+    </ul>
+    }
   </div>
 </main>

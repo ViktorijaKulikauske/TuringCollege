@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { OpenAIService } from './services/openai.service';
 
 @Component({
@@ -7,15 +7,26 @@ import { OpenAIService } from './services/openai.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  protected readonly openAIService = inject(OpenAIService);
+
   title = 'frontend';
   categories: string[] = [];
-
-  constructor(private openAIService: OpenAIService) {}
+  positions: string[] = [];
+  selectedCategory: string | null = null;
 
   ngOnInit() {
     this.openAIService.getProfessionCategories().subscribe({
       next: (data) => (this.categories = data),
       error: (err) => console.error('Failed to fetch categories', err),
+    });
+  }
+
+  onCategoryClick(category: string) {
+    this.selectedCategory = category;
+    this.positions = [];
+    this.openAIService.getPositionsByCategory(category).subscribe({
+      next: (data) => (this.positions = data),
+      error: (err) => console.error('Failed to fetch positions', err),
     });
   }
 }

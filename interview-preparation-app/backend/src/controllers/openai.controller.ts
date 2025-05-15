@@ -29,6 +29,25 @@ class OpenAIController {
       res.status(500).json({ error: "Failed to fetch profession categories." });
     }
   }
+
+  public async getPositionsByCategory(
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    const category = req.query.category as string;
+    if (!category) {
+      res.status(400).json({ error: "Category parameter is required." });
+      return;
+    }
+    try {
+      const positions = await this.openAIService.getPositionsByCategory(category);
+      res.status(200).json(positions);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "Failed to fetch positions for category." });
+    }
+  }
 }
 
 export default OpenAIController;

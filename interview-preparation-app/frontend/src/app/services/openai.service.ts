@@ -12,4 +12,10 @@ export class OpenAIService {
   getProfessionCategories(): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiUrl}/categories`);
   }
+
+  getPositionsByCategory(category: string) {
+    return this.http.get<string[]>(
+      `${this.apiUrl}/positions?category=${encodeURIComponent(category)}`
+    );
+  }
 }

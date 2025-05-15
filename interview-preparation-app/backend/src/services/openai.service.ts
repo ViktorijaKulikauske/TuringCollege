@@ -7,7 +7,7 @@ export class OpenAIService {
     apiKey: process.env.OPENAI_API_KEY!,
   });
 
-  async callOpenAI(prompt: string): Promise<any> {
+  async callOpenAI(prompt: string, systemMessage?: string): Promise<any> {
     try {
       const response = await this.openai.chat.completions.create({
         model: "gpt-4o",
@@ -17,8 +17,7 @@ export class OpenAIService {
         messages: [
           {
             role: "system",
-            content:
-              "You are an expert profession advisor. Return the top 10 main profession categories as a JSON object with a 'profession_categories' array property.",
+            content: systemMessage || "",
           },
           {
             role: "user",
@@ -40,8 +39,10 @@ export class OpenAIService {
   async getMainProfessionCategories(): Promise<string[]> {
     const prompt =
       "List the main profession categories as an array in a property called 'profession_categories'.";
+    const systemMessage =
+      "You are an expert profession advisor. Return the top 10 main profession categories as a JSON object with a 'profession_categories' array property.";
     try {
-      const response = await this.callOpenAI(prompt);
+      const response = await this.callOpenAI(prompt, systemMessage);
       return response.profession_categories;
     } catch (error) {
       if (error instanceof Error) {
@@ -51,6 +52,26 @@ export class OpenAIService {
       } else {
         throw new Error(
           "Failed to fetch profession categories with an unknown error."
+        );
+      }
+    }
+  }
+
+  async getPositionsByCategory(category: string): Promise<string[]> {
+    const prompt = `List the top 10 job positions in the "${category}" profession category as a JSON array in a property called "positions".`;
+    const systemMessage =
+      "You are an expert profession advisor. Return the top 10 job positions for a given profession category as a JSON object with a 'positions' array property.";
+    try {
+      const response = await this.callOpenAI(prompt, systemMessage);
+      return response.positions;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(
+          `Failed to fetch positions for category: ${error.message}`
+        );
+      } else {
+        throw new Error(
+          "Failed to fetch positions for category with an unknown error."
         );
       }
     }

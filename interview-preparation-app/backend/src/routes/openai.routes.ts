@@ -14,6 +14,10 @@ router.get(
   "/categories",
   openAIController.getProfessionCategories.bind(openAIController)
 );
+router.get(
+  "/positions",
+  openAIController.getPositionsByCategory.bind(openAIController)
+);
 
 export default function setOpenAIRoutes(app: Application) {
   app.use("/api/openai", router);
