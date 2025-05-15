@@ -1,0 +1,11 @@
+<h4 class="text-lg font-semibold mt-8 mb-4 text-center">
+  Suggested Answers for:<br />
+  <span class="italic">{{ question }}</span>
+</h4>
+<ul class="grid grid-cols-1 gap-2">
+  @for(answer of answers; track answer) {
+    <li class="bg-blue-100 rounded px-4 py-2 text-gray-800">
+      {{ answer }}
+    </li>
+  }
+</ul>

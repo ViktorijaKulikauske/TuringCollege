@@ -1,10 +1,20 @@
 import { Component, inject } from '@angular/core';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { InterviewPrepListComponent } from './interview-prep-list/interview-prep-list.component';
+import { PositionListComponent } from './position-list/position-list.component';
 import { OpenAIService } from './services/openai.service';
+import { SuggestedAnswersComponent } from './suggested-answers/suggested-answers.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  imports: [
+    CategoryListComponent,
+    PositionListComponent,
+    InterviewPrepListComponent,
+    SuggestedAnswersComponent,
+  ],
 })
 export class AppComponent {
   protected readonly openAIService = inject(OpenAIService);
@@ -55,7 +65,9 @@ export class AppComponent {
     this.suggestedAnswers = [];
     this.openAIService.getSuggestedAnswersByPosition(question).subscribe({
       next: (data: any) => {
-        this.suggestedAnswers = data.map((item: any) => item.answer);
+        this.suggestedAnswers = data.map((item: any) =>
+          item.answer ? item.answer : item
+        );
       },
       error: (err) => console.error('Failed to fetch suggested answers', err),
     });
