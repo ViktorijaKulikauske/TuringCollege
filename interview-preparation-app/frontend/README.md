@@ -1,59 +1,59 @@
-# Frontend
+# Interview Preparation App Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+This is the Angular 17+ frontend for the Interview Preparation App. It uses standalone components, the new Angular control flow (`@if`, `@for`), and Tailwind CSS for styling.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Browse profession categories and positions.
+- View top interview questions/exercises for each position.
+- Click a question to get AI-generated suggested answers.
+- Modern, modular UI with standalone components.
+
+## Development
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm
+- Angular CLI (`npm install -g @angular/cli`)
+
+### Setup
+
+```bash
+npm install
+```
+
+### Running the App
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Visit [http://localhost:4200](http://localhost:4200) in your browser.
 
-## Code scaffolding
+### Code Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- `src/app/` contains:
+  - `category-list/`, `position-list/`, `interview-prep-list/`, `suggested-answers/`: Standalone UI components.
+  - `services/`: API service for backend communication.
+  - `app.component.*`: Main shell and logic.
 
-```bash
-ng generate component component-name
-```
+### Styling
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Uses Tailwind CSS (see `styles.css` and `tailwind.config.js`).
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Testing
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Building
 
 ```bash
-ng e2e
+ng build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## More Info
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+See the main [README.md](../README.md) for full-stack instructions.

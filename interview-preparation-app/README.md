@@ -1,80 +1,77 @@
 # Interview Preparation App
 
-This project is an Interview Preparation application that consists of a frontend built with Angular and a backend API that interacts with OpenAI. The application is designed to help users prepare for interviews by generating questions and answers using AI.
+This project is a full-stack Interview Preparation application powered by OpenAI. It helps users prepare for job interviews by exploring profession categories, positions, and practicing with AI-generated interview questions and suggested answers.
 
 ## Project Structure
 
-The project is divided into two main parts: `frontend` and `backend`.
+- **frontend/**: Angular 17+ SPA using standalone components and Tailwind CSS.
+- **backend/**: Node.js (Express) API that interacts with OpenAI.
 
-### Frontend
+## Features
 
-The frontend is an Angular single-page application (SPA) located in the `frontend` directory. It includes:
-
-- **Components**: UI components that represent different parts of the application.
-- **Services**: Services for handling API calls and business logic.
-- **Assets**: Static files such as images and stylesheets.
-- **Environments**: Configuration files for different environments (development and production).
-
-### Backend
-
-The backend is built with Node.js and Express, located in the `backend` directory. It includes:
-
-- **Controllers**: Logic for handling incoming API requests.
-- **Routes**: Definitions of API endpoints.
-- **Services**: Logic for interacting with the OpenAI API.
+- Browse main profession categories and positions.
+- Get top interview questions/exercises for a selected position.
+- Click any question to receive AI-generated suggested answers.
+- Modern Angular architecture with standalone components and new control flow (`@if`, `@for`).
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js and npm installed on your machine.
-- Angular CLI installed globally.
+- Node.js (v18+ recommended)
+- npm
+- Angular CLI (`npm install -g @angular/cli`)
 
 ### Installation
 
 1. Clone the repository:
-   ```
+
+   ```bash
    git clone <repository-url>
    cd interview-preparation-app
    ```
 
 2. Install frontend dependencies:
-   ```
+
+   ```bash
    cd frontend
    npm install
    ```
 
 3. Install backend dependencies:
-   ```
-   cd backend
+   ```bash
+   cd ../backend
    npm install
    ```
 
 ### Running the Application
 
 1. Start the backend server:
-   ```
+
+   ```bash
    cd backend
    npm start
    ```
 
-2. In a new terminal, start the frontend application:
-   ```
+2. In a new terminal, start the frontend:
+
+   ```bash
    cd frontend
    ng serve
    ```
 
-3. Open your browser and navigate to `http://localhost:4200` to access the application.
+3. Open [http://localhost:4200](http://localhost:4200) in your browser.
 
 ## Usage
 
-- Use the frontend interface to interact with the OpenAI API.
-- Enter prompts to generate interview questions and answers.
+- Select a profession category, then a position.
+- Click a question to view suggested answers.
+- Use the app to prepare for interviews with realistic, AI-generated content.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+Contributions are welcome! Please open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License

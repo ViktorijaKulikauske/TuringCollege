@@ -1,53 +1,60 @@
 # Interview Preparation App Backend
 
-This is the backend for the Interview Preparation application. It is built using Node.js and Express, and it interacts with the OpenAI API to provide responses based on user prompts.
+This is the backend API for the Interview Preparation App. It is built with Node.js, Express, and integrates with OpenAI to generate interview content.
+
+## Features
+
+- REST API for profession categories, positions, interview questions, and suggested answers.
+- Uses OpenAI to generate realistic interview content.
+- Designed for use with the Angular frontend in this repository.
 
 ## Project Structure
 
-- **src/**: Contains the source code for the backend application.
-  - **controllers/**: Contains the controller files that handle API requests.
-  - **routes/**: Contains the route definitions for the API.
-  - **services/**: Contains service files that interact with external APIs, such as OpenAI.
-  - **app.ts**: The main entry point of the backend application.
+- `src/controllers/`: API controllers.
+- `src/routes/`: Express route definitions.
+- `src/services/`: OpenAI integration and business logic.
+- `src/app.ts`: Main entry point.
 
-## Installation
+## Setup
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   ```
+### Prerequisites
 
-2. Navigate to the backend directory:
-   ```
-   cd interview-preparation-app/backend
-   ```
+- Node.js (v18+ recommended)
+- npm
 
-3. Install the dependencies:
-   ```
-   npm install
-   ```
+### Installation
 
-## Running the Application
-
-To start the backend server, run the following command:
+```bash
+npm install
 ```
+
+### Environment
+
+Create a `.env` file in `backend/` with your OpenAI API key:
+
+```
+OPENAI_API_KEY=sk-...
+```
+
+### Running
+
+```bash
 npm start
 ```
 
-The server will start on the specified port (default is 3000). You can change the port in the `app.ts` file.
+The server runs on [http://localhost:3000](http://localhost:3000) by default.
 
 ## API Endpoints
 
-- **POST /api/openai/generate**: Sends a prompt to the OpenAI API and returns the generated response.
-
-## Environment Variables
-
-Make sure to set the necessary environment variables for the OpenAI API key and other configurations. You can create a `.env` file in the root of the backend directory and add your variables there.
+- `GET /api/openai/categories`
+- `GET /api/openai/positions?category=...`
+- `GET /api/openai/interview-prep?position=...`
+- `GET /api/openai/suggested-answers?position=...` (question text as `position` param)
 
 ## Contributing
 
-If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
+Contributions are welcome! Please fork and submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+MIT License
