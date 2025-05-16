@@ -28,10 +28,18 @@ export class AppComponent {
   suggestedAnswers: string[] = [];
   selectedQuestion: string | null = null;
 
+  // Loading states
+  loadingCategories = false;
+  loadingPositions = false;
+  loadingInterviewPrep = false;
+  loadingSuggestedAnswers = false;
+
   ngOnInit() {
+    this.loadingCategories = true;
     this.openAIService.getProfessionCategories().subscribe({
       next: (data) => (this.categories = data),
       error: (err) => console.error('Failed to fetch categories', err),
+      complete: () => (this.loadingCategories = false),
     });
   }
 
@@ -40,9 +48,11 @@ export class AppComponent {
     this.positions = [];
     this.selectedPosition = null;
     this.interviewPrep = [];
+    this.loadingPositions = true;
     this.openAIService.getPositionsByCategory(category).subscribe({
       next: (data) => (this.positions = data),
       error: (err) => console.error('Failed to fetch positions', err),
+      complete: () => (this.loadingPositions = false),
     });
   }
 
@@ -51,18 +61,21 @@ export class AppComponent {
     this.interviewPrep = [];
     this.suggestedAnswers = [];
     this.selectedQuestion = null;
+    this.loadingInterviewPrep = true;
     this.openAIService.getInterviewPrepByPosition(position).subscribe({
       next: (data) => {
         this.interviewPrep = data;
       },
       error: (err) =>
         console.error('Failed to fetch interview preparation', err),
+      complete: () => (this.loadingInterviewPrep = false),
     });
   }
 
   onQuestionClick(question: string) {
     this.selectedQuestion = question;
     this.suggestedAnswers = [];
+    this.loadingSuggestedAnswers = true;
     this.openAIService.getSuggestedAnswersByPosition(question).subscribe({
       next: (data: any) => {
         this.suggestedAnswers = data.map((item: any) =>
@@ -70,6 +83,7 @@ export class AppComponent {
         );
       },
       error: (err) => console.error('Failed to fetch suggested answers', err),
+      complete: () => (this.loadingSuggestedAnswers = false),
     });
   }
 }

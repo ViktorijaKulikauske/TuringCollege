@@ -1,31 +1,39 @@
 <main class="min-h-screen bg-gray-50 flex items-center justify-center">
-  <div class="content w-full max-w-xl bg-white rounded-lg shadow-lg p-8">
-    <h2 class="text-2xl font-bold mb-6 text-center">
-      Main Profession Categories
-    </h2>
+  <div class="content w-full max-w-2xl bg-white rounded-lg shadow-lg p-8">
+    @if(loadingCategories) {
+    <div class="text-center mb-4 text-gray-500">Loading categories...</div>
+    } @else {
     <app-category-list
       [categories]="categories"
       (categorySelected)="onCategoryClick($event)"
-    >
-    </app-category-list>
-    @if(selectedCategory) {
+    />
+    } @if(selectedCategory) { @if(loadingPositions) {
+    <div class="text-center mb-4 text-gray-500">Loading positions...</div>
+    } @else {
     <app-position-list
       [positions]="positions"
       (positionSelected)="onPositionClick($event)"
-    >
-    </app-position-list>
-    } @if(selectedPosition) {
+    />
+    } } @if(selectedPosition) { @if(loadingInterviewPrep) {
+    <div class="text-center mb-4 text-gray-500">
+      Loading interview questions...
+    </div>
+    } @else {
     <app-interview-prep-list
       [questions]="interviewPrep"
       (questionSelected)="onQuestionClick($event)"
-    >
-    </app-interview-prep-list>
-    } @if(selectedQuestion && suggestedAnswers.length > 0) {
+    />
+
+    } } @if(selectedQuestion) { @if(loadingSuggestedAnswers) {
+    <div class="text-center mb-4 text-gray-500">
+      Loading suggested answers...
+    </div>
+    } @if(suggestedAnswers.length > 0) {
     <app-suggested-answers
       [question]="selectedQuestion"
       [answers]="suggestedAnswers"
     >
     </app-suggested-answers>
-    }
+    } }
   </div>
 </main>
