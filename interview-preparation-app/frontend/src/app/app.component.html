@@ -1,39 +1,23 @@
-<main class="min-h-screen bg-gray-50 flex items-center justify-center">
-  <div class="content w-full max-w-2xl bg-white rounded-lg shadow-lg p-8">
-    @if(loadingCategories) {
-    <div class="text-center mb-4 text-gray-500">Loading categories...</div>
-    } @else {
-    <app-category-list
-      [categories]="categories"
-      (categorySelected)="onCategoryClick($event)"
-    />
-    } @if(selectedCategory) { @if(loadingPositions) {
-    <div class="text-center mb-4 text-gray-500">Loading positions...</div>
-    } @else {
-    <app-position-list
-      [positions]="positions"
-      (positionSelected)="onPositionClick($event)"
-    />
-    } } @if(selectedPosition) { @if(loadingInterviewPrep) {
-    <div class="text-center mb-4 text-gray-500">
-      Loading interview questions...
-    </div>
-    } @else {
-    <app-interview-prep-list
-      [questions]="interviewPrep"
-      (questionSelected)="onQuestionClick($event)"
-    />
-
-    } } @if(selectedQuestion) { @if(loadingSuggestedAnswers) {
-    <div class="text-center mb-4 text-gray-500">
-      Loading suggested answers...
-    </div>
-    } @if(suggestedAnswers.length > 0) {
-    <app-suggested-answers
-      [question]="selectedQuestion"
-      [answers]="suggestedAnswers"
+<div
+  class="min-h-screen flex bg-gradient-to-br from-blue-100 via-white to-purple-100"
+>
+  <app-sidebar></app-sidebar>
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center p-4">
+    <div
+      class="w-full max-w-2xl bg-white/70 backdrop-blur-md rounded-3xl shadow-xl p-6 md:p-10 transition hover:shadow-2xl"
     >
-    </app-suggested-answers>
-    } }
-  </div>
-</main>
+      <h1
+        class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 mb-6 text-center drop-shadow"
+      >
+        Prepare for Your Next Interview
+      </h1>
+      <p class="text-center text-gray-500 mb-8">
+        Explore professions, practice questions, and get AI-powered answers.
+        Calm, focused, and cute—just for you!
+      </p>
+
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

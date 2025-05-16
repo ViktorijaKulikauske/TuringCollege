@@ -1,18 +1,23 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { OpenAIService } from './services/openai.service';
+import { OpenAIService } from '../../services/openai.service';
+import { CategoryListComponent } from '../category-list/category-list.component';
+import { InterviewPrepListComponent } from '../interview-prep-list/interview-prep-list.component';
+import { PositionListComponent } from '../position-list/position-list.component';
+import { SuggestedAnswersComponent } from '../suggested-answers/suggested-answers.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  imports: [RouterOutlet, SidebarComponent],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  imports: [
+    CategoryListComponent,
+    PositionListComponent,
+    InterviewPrepListComponent,
+    SuggestedAnswersComponent,
+  ],
 })
-export class AppComponent {
+export class HomeComponent {
   protected readonly openAIService = inject(OpenAIService);
 
-  title = 'frontend';
   categories: string[] = [];
   positions: string[] = [];
   selectedCategory: string | null = null;
