@@ -46,6 +46,8 @@ export class HomeComponent {
     this.positions = [];
     this.selectedPosition = null;
     this.interviewPrep = [];
+    this.suggestedAnswers = [];
+    this.selectedQuestion = null;
     this.loadingPositions = true;
     this.openAIService.getPositionsByCategory(category).subscribe({
       next: (data) => (this.positions = data),
