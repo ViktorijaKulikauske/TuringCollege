@@ -1,0 +1,66 @@
+@if(!showSimulator) {
+<button
+  class="fixed bottom-6 right-6 z-50 bg-purple-600 text-white rounded-full shadow-lg w-16 h-16 flex items-center justify-center text-3xl hover:bg-purple-700 transition"
+  (click)="openSimulator()"
+  aria-label="Open Interview Simulator"
+>
+  💬
+</button>
+} @if (showSimulator) {
+<div
+  class="fixed bottom-6 right-6 z-50 w-80 max-w-full bg-white rounded-2xl shadow-2xl border border-purple-200 flex flex-col"
+>
+  <div
+    class="flex items-center justify-between px-4 py-2 border-b border-purple-100 bg-purple-50 rounded-t-2xl"
+  >
+    <span class="font-semibold text-purple-700">Interview Simulator</span>
+    <button
+      class="text-gray-400 hover:text-gray-700 text-xl"
+      (click)="closeSimulator()"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+  </div>
+  <div class="flex-1 overflow-y-auto p-4" style="max-height: 350px">
+    @for (msg of simulatorHistory; track msg) {
+    <div
+      [ngClass]="{
+        'text-right': msg.role === 'user',
+        'text-left': msg.role === 'assistant'
+      }"
+      class="mb-2"
+    >
+      @if (msg.role === 'user') {
+      <span class="font-bold">You:</span>
+      } @if (msg.role === 'assistant') {
+      <span class="font-bold">AI:</span>
+      }
+      <span class="ml-2">{{ msg.content }}</span>
+    </div>
+    } @if (simulatorLoading) {
+    <div class="text-gray-400 mt-2">AI is typing...</div>
+    }
+  </div>
+  <form
+    (ngSubmit)="sendSimulatorMessage()"
+    class="flex gap-2 p-3 border-t border-purple-100 bg-purple-50 rounded-b-2xl"
+  >
+    <input
+      class="flex-1 border rounded px-2 py-1"
+      [(ngModel)]="simulatorInput"
+      name="simulatorInput"
+      [disabled]="simulatorLoading"
+      placeholder="Type your answer..."
+      autocomplete="off"
+    />
+    <button
+      class="bg-purple-600 text-white px-4 py-1 rounded hover:bg-purple-700 transition"
+      type="submit"
+      [disabled]="simulatorLoading || !simulatorInput.trim()"
+    >
+      Send
+    </button>
+  </form>
+</div>
+}

@@ -1,0 +1,51 @@
+<div
+  class="max-w-xl mx-auto bg-white/90 rounded-xl shadow-lg p-6 mb-8 border border-purple-200"
+>
+  <div class="mb-2 flex gap-2 items-center">
+    <label class="font-medium">Persona:</label>
+    <select class="border rounded px-2 py-1" [(ngModel)]="interviewPersona">
+      <option value="neutral">Neutral</option>
+      <option value="strict">Strict</option>
+      <option value="friendly">Friendly</option>
+    </select>
+  </div>
+  <div class="overflow-y-auto max-h-64 mb-4 border rounded bg-gray-50 p-3">
+    @for (msg of interviewHistory; track msg) {
+    <div
+      [ngClass]="{
+        'text-right': msg.role === 'user',
+        'text-left': msg.role === 'assistant'
+      }"
+    >
+      @if (msg.role === 'user') {
+      <span class="font-bold">You:</span>
+      } @if (msg.role === 'assistant') {
+      <span class="font-bold">AI:</span>
+      }
+      <span class="ml-2">{{ msg.content }}</span>
+    </div>
+    } @if (interviewSimulatorLoading) {
+    <div class="text-gray-400 mt-2">AI is typing...</div>
+    }
+  </div>
+  <form (ngSubmit)="sendInterviewReply()" class="flex gap-2">
+    <input
+      class="flex-1 border rounded px-2 py-1"
+      [(ngModel)]="interviewSimulatorReply"
+      name="interviewSimulatorReply"
+      [disabled]="interviewSimulatorLoading"
+      placeholder="Type your answer..."
+      autocomplete="off"
+    />
+    <button
+      class="bg-purple-600 text-white px-4 py-1 rounded hover:bg-purple-700 transition"
+      type="submit"
+      [disabled]="interviewSimulatorLoading || !interviewSimulatorReply.trim()"
+    >
+      Send
+    </button>
+  </form>
+  <button class="mt-4 text-sm text-gray-500 underline" (click)="exit.emit()">
+    Exit Simulator
+  </button>
+</div>

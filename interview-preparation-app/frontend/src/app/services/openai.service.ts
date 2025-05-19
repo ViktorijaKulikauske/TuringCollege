@@ -19,17 +19,43 @@ export class OpenAIService {
     );
   }
 
-  getInterviewPrepByPosition(position: string) {
+  getInterviewPrepByPosition(
+    position: string,
+    technique: string = 'zero-shot',
+    temperature: number = 0
+  ) {
     return this.http.get<string[]>(
-      `${this.apiUrl}/interview-prep?position=${encodeURIComponent(position)}`
+      `${this.apiUrl}/interview-prep?position=${encodeURIComponent(
+        position
+      )}&technique=${encodeURIComponent(technique)}&temperature=${temperature}`
     );
   }
 
-  getSuggestedAnswersByPosition(question: string) {
+  getSuggestedAnswersByPosition(
+    question: string,
+    technique: string = 'zero-shot',
+    temperature: number = 0
+  ) {
     return this.http.get<string[]>(
       `${this.apiUrl}/suggested-answers?position=${encodeURIComponent(
         question
-      )}`
+      )}&technique=${encodeURIComponent(technique)}&temperature=${temperature}`
     );
+  }
+
+  interviewSimulator(
+    history: { role: string; content: string }[],
+    persona: string,
+    position: string,
+    technique: string,
+    temperature: number
+  ) {
+    return this.http.post<any>(`${this.apiUrl}/interview-simulator`, {
+      history,
+      persona,
+      position,
+      technique,
+      temperature,
+    });
   }
 }

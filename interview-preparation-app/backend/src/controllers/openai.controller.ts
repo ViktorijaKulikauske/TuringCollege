@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { OpenAIService } from "../services/openai.service";
+import { OpenAIService, PromptTechnique } from "../services/openai.service";
 
 class OpenAIController {
   constructor(private openAIService: OpenAIService) {}
@@ -25,7 +25,7 @@ class OpenAIController {
       const categories = await this.openAIService.getMainProfessionCategories();
       res.status(200).json(categories);
     } catch (error) {
-      console.error("Error fetching profession categories:", error); // Log the error
+      console.error("Error fetching profession categories:", error);
       res.status(500).json({ error: "Failed to fetch profession categories." });
     }
   }
@@ -56,13 +56,19 @@ class OpenAIController {
     res: Response
   ): Promise<void> {
     const position = req.query.position as string;
+    const technique = (req.query.technique as PromptTechnique) || "zero-shot";
+    const temperature = req.query.temperature
+      ? Number(req.query.temperature)
+      : 0;
     if (!position) {
       res.status(400).json({ error: "Position parameter is required." });
       return;
     }
     try {
       const prep = await this.openAIService.getInterviewPrepByPosition(
-        position
+        position,
+        technique,
+        temperature
       );
       res.status(200).json(prep);
     } catch (error) {
@@ -76,14 +82,20 @@ class OpenAIController {
     req: Request,
     res: Response
   ): Promise<void> {
-    const question = req.query.position as string; // 'position' param now holds the question text
+    const question = req.query.position as string;
+    const technique = (req.query.technique as PromptTechnique) || "zero-shot";
+    const temperature = req.query.temperature
+      ? Number(req.query.temperature)
+      : 0;
     if (!question) {
       res.status(400).json({ error: "Question parameter is required." });
       return;
     }
     try {
       const answers = await this.openAIService.getSuggestedAnswersByQuestion(
-        question
+        question,
+        technique,
+        temperature
       );
       res.status(200).json(answers);
     } catch (error) {

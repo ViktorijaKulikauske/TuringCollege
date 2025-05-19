@@ -23,7 +23,8 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.33.1",
     "@google/generative-ai": "^0.21.0",
-    "openai": "^4.77.3"
+    "fs": "^0.0.1-security",
+    "openai": "^4.100.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.5",

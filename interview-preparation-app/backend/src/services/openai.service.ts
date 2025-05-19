@@ -1,6 +1,29 @@
 import { Injectable } from "@nestjs/common";
 import OpenAI from "openai";
 
+export type PromptTechnique =
+  | "zero-shot"
+  | "few-shot"
+  | "chain-of-thought"
+  | "role-play"
+  | "self-critique"
+  | "socratic";
+
+const SYSTEM_PROMPTS: Record<PromptTechnique, string> = {
+  "zero-shot":
+    "You are an expert career and interview coach. Always respond in JSON format as requested in the user prompt. Be concise, relevant, and helpful for job interview preparation.",
+  "few-shot":
+    "You are an expert career and interview coach. Here are some examples of good responses: {examples}. Now, always respond in JSON format as requested in the user prompt. Be concise, relevant, and helpful for job interview preparation.",
+  "chain-of-thought":
+    "You are an expert career and interview coach. Think step by step. Always respond in JSON format as requested in the user prompt. Be concise, relevant, and helpful for job interview preparation.",
+  "role-play":
+    "You are an expert career and interview coach. Let's do a role-play. Always respond in JSON format as requested in the user prompt. Be concise, relevant, and helpful for job interview preparation.",
+  "self-critique":
+    "You are an expert career and interview coach. After each response, include a self-critique of the response in JSON format. Be concise, relevant, and helpful for job interview preparation.",
+  socratic:
+    "You are an expert career and interview coach. Use Socratic questioning: instead of giving direct answers, guide the user to think critically by asking probing questions. Always respond in JSON format as requested in the user prompt. Be concise, relevant, and helpful for job interview preparation.",
+};
+
 @Injectable()
 export class OpenAIService {
   openai = new OpenAI({
@@ -10,15 +33,19 @@ export class OpenAIService {
   private readonly systemMessage =
     "You are an expert career and interview coach. Always respond in JSON format as requested in the user prompt. Be concise, relevant, and helpful for job interview preparation.";
 
-  async callOpenAI(userPrompt: string): Promise<any> {
+  async callOpenAI(
+    userPrompt: string,
+    technique: PromptTechnique = "zero-shot",
+    options?: { temperature?: number }
+  ): Promise<any> {
     try {
       const response = await this.openai.chat.completions.create({
         model: "gpt-4o",
-        temperature: 0,
+        temperature: options?.temperature ?? 0,
         max_tokens: 800,
         response_format: { type: "json_object" },
         messages: [
-          { role: "system", content: this.systemMessage },
+          { role: "system", content: SYSTEM_PROMPTS[technique] },
           { role: "user", content: userPrompt },
         ],
       });
@@ -70,10 +97,16 @@ export class OpenAIService {
     }
   }
 
-  async getInterviewPrepByPosition(position: string): Promise<string[]> {
+  async getInterviewPrepByPosition(
+    position: string,
+    technique: PromptTechnique = "zero-shot",
+    temperature: number = 0
+  ): Promise<string[]> {
     const prompt = `List the top 10 questions, exercises, or personality tests that could be asked or given during a job interview for the position "${position}". Respond as a JSON object with a property 'interview_preparation' containing an array of strings.`;
     try {
-      const response = await this.callOpenAI(prompt);
+      const response = await this.callOpenAI(prompt, technique, {
+        temperature,
+      });
       return response.interview_preparation;
     } catch (error) {
       if (error instanceof Error) {
@@ -88,10 +121,16 @@ export class OpenAIService {
     }
   }
 
-  async getSuggestedAnswersByQuestion(question: string): Promise<string[]> {
+  async getSuggestedAnswersByQuestion(
+    question: string,
+    technique: PromptTechnique = "zero-shot",
+    temperature: number = 0
+  ): Promise<string[]> {
     const prompt = `List the top 5 answers or answer strategies that would help a candidate prepare for the following interview question: "${question}". Respond as a JSON object with a property 'suggested_answers' containing an array of strings.`;
     try {
-      const response = await this.callOpenAI(prompt);
+      const response = await this.callOpenAI(prompt, technique, {
+        temperature,
+      });
       return response.suggested_answers;
     } catch (error) {
       if (error instanceof Error) {
