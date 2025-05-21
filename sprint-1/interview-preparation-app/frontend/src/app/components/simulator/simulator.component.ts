@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { OpenAIService } from '../../services/openai.service';
 
@@ -10,8 +10,8 @@ import { OpenAIService } from '../../services/openai.service';
   templateUrl: './simulator.component.html',
 })
 export class SimulatorComponent {
-  @Input() technique: string = 'zero-shot';
-  @Input() temperature: number = 0;
+  readonly technique = input<string>('zero-shot');
+  readonly temperature = input<number>(0);
 
   showSimulator = false;
   simulatorStep: 'category' | 'position' | 'chat' = 'category';
@@ -78,8 +78,8 @@ export class SimulatorComponent {
         history,
         'neutral',
         this.simulatorPosition ?? '',
-        this.technique,
-        this.temperature
+        this.technique(),
+        this.temperature()
       )
       .subscribe({
         next: (data) => {
