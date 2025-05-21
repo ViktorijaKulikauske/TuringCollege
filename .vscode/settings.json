@@ -13,5 +13,25 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "*.ts": "${capture}.spec.ts"
-  }
+  },
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "github.copilot.advanced": {},
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": false,
+  "eslint.format.enable": true,
+  "files.autoSave": "onWindowChange",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "jest.runMode": "on-demand",
+  "html.validate.scripts": true,
+  "html.validate.styles": true,
+  "files.autoSaveDelay": 500,
+  "explorer.confirmDelete": false,
+  "github.copilot.chat.reviewSelection.instructions": [
+    {
+      "file": ".copilot-review-instructions.md"
+    }
+  ]
 }

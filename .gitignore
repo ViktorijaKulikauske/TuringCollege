@@ -2,3 +2,5 @@
 .angular
 .env
 node_modules
+
+__pycache__
