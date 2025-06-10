@@ -1,0 +1,23 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write src/**/*.ts",
+    "start": "npm run file src",
+    "exercise": "npm run file src/script.ts",
+    "file": "tsx --env-file=.env --no-deprecation"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/openai": "^0.3.17"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.9",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "3-rag-langchain",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write src/**/*.ts",
+    "start": "npm run file src",
+    "file": "tsx --env-file=.env --no-deprecation"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/community": "^0.3.26",
+    "@langchain/core": "^0.3.57",
+    "@langchain/langgraph": "^0.2.74",
+    "@langchain/openai": "^0.3.17",
+    "cheerio": "^1.0.0",
+    "faiss-node": "^0.5.1",
+    "langchain": "^0.3.27"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.9",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2"
+  }
+}

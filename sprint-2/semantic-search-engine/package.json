@@ -1,0 +1,26 @@
+{
+  "name": "to-vector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write src/**/*.ts",
+    "file": "tsx --env-file=.env --no-deprecation",
+    "start": "npm run file src/main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/community": "^0.3.45",
+    "langchain": "^0.3.27",
+    "openai": "^4.77.3",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2"
+  }
+}
