@@ -10,6 +10,8 @@ Tell me when you read this document.
 - Analyse the given solution and suggest improvements
 - Do not add comments to the code
 - Do a proper cleanup of the edited code
+- Use the latest packages and libraries
+- Always update all Readme files with the latest information
 
 ## Frontend Core Requirements:
 
